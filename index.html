@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reusable Studio Engine</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Canvas element (sized by CSS, scaled by JavaScript for HiDPI) -->
+  <canvas id="canvas"></canvas>
+
+  <!-- Load all modules in order of dependency -->
+  <!-- Utilities -->
+  <script src="src/utils/math.js"></script>
+  
+  <!-- Canvas setup -->
+  <script src="src/canvas/setupCanvas.js"></script>
+  <script src="src/canvas/loop.js"></script>
+  
+  <!-- Input handling -->
+  <script src="src/input/input.js"></script>
+  
+  <!-- Main orchestrator (runs last, after all dependencies are loaded) -->
+  <script src="main.js"></script>
+</body>
+</html>
