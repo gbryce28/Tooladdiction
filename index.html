@@ -3,25 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reusable Studio Engine</title>
+  <title>Habit Garden</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Canvas element (sized by CSS, scaled by JavaScript for HiDPI) -->
-  <canvas id="canvas"></canvas>
+  <div id="app" class="app">
+    <!-- Garden Canvas -->
+    <canvas id="garden" class="garden-canvas"></canvas>
 
-  <!-- Load all modules in order of dependency -->
-  <!-- Utilities -->
+    <!-- Habit Input Section -->
+    <div class="habit-panel">
+      <div class="habit-setup" id="habitSetup">
+        <h2>What habit are you cultivating?</h2>
+        <input 
+          type="text" 
+          id="habitInput" 
+          class="habit-input" 
+          placeholder="e.g., Meditate, Write, Move"
+          maxlength="30"
+        >
+        <button id="startBtn" class="btn btn-primary">Start Gardening</button>
+      </div>
+
+      <div class="habit-log" id="habitLog" style="display: none;">
+        <div class="habit-title" id="habitTitle">Your Habit</div>
+        <div class="habit-actions">
+          <button id="logBtn" class="btn btn-log">I practiced today</button>
+          <button id="changeBtn" class="btn btn-secondary">Change habit</button>
+        </div>
+        <div class="habit-info">
+          <div class="info-stat">
+            <span class="stat-label">Total practices</span>
+            <span class="stat-value" id="practiceCount">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Info -->
+    <div class="info-footer">
+      Gardens grow slowly. That's the point.
+    </div>
+  </div>
+
+  <!-- Load modules -->
   <script src="src/utils/math.js"></script>
-  
-  <!-- Canvas setup -->
-  <script src="src/canvas/setupCanvas.js"></script>
-  <script src="src/canvas/loop.js"></script>
-  
-  <!-- Input handling -->
-  <script src="src/input/input.js"></script>
-  
-  <!-- Main orchestrator (runs last, after all dependencies are loaded) -->
+  <script src="src/garden/plant.js"></script>
+  <script src="src/garden/canvas.js"></script>
+  <script src="src/garden/storage.js"></script>
   <script src="main.js"></script>
 </body>
 </html>
