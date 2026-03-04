@@ -433,6 +433,11 @@ html, body {
   letter-spacing: -0.02em;
 }
 
+.header-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
 .graph-section,
 .stats-section,
 .insights-section {

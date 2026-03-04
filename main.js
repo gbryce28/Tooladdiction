@@ -39,6 +39,7 @@ const app = {
 
     // View mode
     editBtn: document.getElementById('editBtn'),
+    exampleDataBtn: document.getElementById('exampleDataBtn'),
     correlationGraph: document.getElementById('correlationGraph'),
     moodGraph: document.getElementById('moodGraph'),
     screenTimeGraph: document.getElementById('screenTimeGraph'),
@@ -124,6 +125,7 @@ const app = {
 
     // View mode
     this.elements.editBtn.addEventListener('click', () => this.startNewEntry());
+    this.elements.exampleDataBtn.addEventListener('click', () => this.loadExampleData());
 
     window.addEventListener('resize', () => this.renderGraphs());
   },
@@ -260,6 +262,15 @@ const app = {
     this.elements.step2.style.display = 'none';
     this.elements.step3.style.display = 'none';
     this.elements.viewMode.style.display = 'block';
+    this.renderGraphs();
+  },
+
+  loadExampleData() {
+    this.storage.clear();
+    this.generateTestData();
+    this.state.allEntries = this.storage.getEntries();
+    this.analyzer = new ScreenAnalyzer(this.state.allEntries);
+    this.updateStats();
     this.renderGraphs();
   }
 };
