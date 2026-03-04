@@ -24,7 +24,7 @@ class GraphRenderer {
     const sorted = [...entries].sort((a, b) => new Date(a.date) - new Date(b.date)).slice(-14);
     if (sorted.length === 0) return;
 
-    ctx.strokeStyle = '#3a4f6f';
+    ctx.strokeStyle = '#444444';
     ctx.lineWidth = 1;
     ctx.beginPath();
     ctx.moveTo(padding, height - padding);
@@ -81,7 +81,7 @@ class GraphRenderer {
     if (sorted.length === 0) return;
 
     // Draw axes
-    ctx.strokeStyle = '#3a4f6f';
+    ctx.strokeStyle = '#444444';
     ctx.lineWidth = 1.5;
     ctx.beginPath();
     ctx.moveTo(padding, height - padding);
@@ -147,7 +147,7 @@ class GraphRenderer {
     if (sorted.length === 0) return;
 
     // Draw axes
-    ctx.strokeStyle = '#3a4f6f';
+    ctx.strokeStyle = '#444444';
     ctx.lineWidth = 1.5;
     ctx.beginPath();
     ctx.moveTo(padding, height - padding);
@@ -226,7 +226,7 @@ class GraphRenderer {
     const maxScreenDev = Math.max(...deviations.map(d => Math.abs(d.screenDev)));
 
     // Draw axes
-    ctx.strokeStyle = '#3a4f6f';
+    ctx.strokeStyle = '#444444';
     ctx.lineWidth = 1.5;
     
     // X-axis
@@ -242,7 +242,7 @@ class GraphRenderer {
     ctx.stroke();
 
     // Zero line
-    ctx.strokeStyle = '#3a4f6f';
+    ctx.strokeStyle = '#444444';
     ctx.lineWidth = 1;
     ctx.setLineDash([5, 5]);
     ctx.beginPath();
