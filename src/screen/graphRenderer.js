@@ -14,7 +14,7 @@ class GraphRenderer {
     canvas.height = height * (window.devicePixelRatio || 1);
     ctx.scale(window.devicePixelRatio || 1, window.devicePixelRatio || 1);
 
-    ctx.fillStyle = '#2a2a2a';
+    ctx.fillStyle = '#000000';
     ctx.fillRect(0, 0, width, height);
 
     const padding = 40;
@@ -24,7 +24,7 @@ class GraphRenderer {
     const sorted = [...entries].sort((a, b) => new Date(a.date) - new Date(b.date)).slice(-14);
     if (sorted.length === 0) return;
 
-    ctx.strokeStyle = '#555';
+    ctx.strokeStyle = '#3a4f6f';
     ctx.lineWidth = 1;
     ctx.beginPath();
     ctx.moveTo(padding, height - padding);
@@ -70,7 +70,7 @@ class GraphRenderer {
     canvas.height = height * (window.devicePixelRatio || 1);
     ctx.scale(window.devicePixelRatio || 1, window.devicePixelRatio || 1);
 
-    ctx.fillStyle = '#2a2a2a';
+    ctx.fillStyle = '#000000';
     ctx.fillRect(0, 0, width, height);
 
     const padding = 40;
@@ -81,7 +81,7 @@ class GraphRenderer {
     if (sorted.length === 0) return;
 
     // Draw axes
-    ctx.strokeStyle = '#555';
+    ctx.strokeStyle = '#3a4f6f';
     ctx.lineWidth = 1.5;
     ctx.beginPath();
     ctx.moveTo(padding, height - padding);
@@ -136,7 +136,7 @@ class GraphRenderer {
     canvas.height = height * (window.devicePixelRatio || 1);
     ctx.scale(window.devicePixelRatio || 1, window.devicePixelRatio || 1);
 
-    ctx.fillStyle = '#2a2a2a';
+    ctx.fillStyle = '#000000';
     ctx.fillRect(0, 0, width, height);
 
     const padding = 40;
@@ -147,7 +147,7 @@ class GraphRenderer {
     if (sorted.length === 0) return;
 
     // Draw axes
-    ctx.strokeStyle = '#555';
+    ctx.strokeStyle = '#3a4f6f';
     ctx.lineWidth = 1.5;
     ctx.beginPath();
     ctx.moveTo(padding, height - padding);
@@ -202,7 +202,7 @@ class GraphRenderer {
     canvas.height = height * (window.devicePixelRatio || 1);
     ctx.scale(window.devicePixelRatio || 1, window.devicePixelRatio || 1);
 
-    ctx.fillStyle = '#2a2a2a';
+    ctx.fillStyle = '#000000';
     ctx.fillRect(0, 0, width, height);
 
     const padding = 50;
@@ -226,7 +226,7 @@ class GraphRenderer {
     const maxScreenDev = Math.max(...deviations.map(d => Math.abs(d.screenDev)));
 
     // Draw axes
-    ctx.strokeStyle = '#555';
+    ctx.strokeStyle = '#3a4f6f';
     ctx.lineWidth = 1.5;
     
     // X-axis
@@ -242,7 +242,7 @@ class GraphRenderer {
     ctx.stroke();
 
     // Zero line
-    ctx.strokeStyle = '#444';
+    ctx.strokeStyle = '#3a4f6f';
     ctx.lineWidth = 1;
     ctx.setLineDash([5, 5]);
     ctx.beginPath();
