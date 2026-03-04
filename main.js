@@ -193,52 +193,37 @@ const app = {
   },
 
   renderGraphs() {
-    // Add small delay to ensure DOM is fully rendered
-    setTimeout(() => {
-      // Step 3 graph (small)
-      if (this.elements.correlationGraph && this.elements.correlationGraph.offsetParent !== null) {
-        this.graphRenderer.drawCorrelationGraph(
-          this.elements.correlationGraph,
-          this.state.allEntries
-        );
-      }
+    // Step 3 graph (small)
+    if (this.elements.correlationGraph.offsetParent !== null) {
+      this.graphRenderer.drawCorrelationGraph(
+        this.elements.correlationGraph,
+        this.state.allEntries
+      );
+    }
 
-      // View mode graphs
-      if (this.elements.moodGraph && this.elements.moodGraph.offsetParent !== null) {
-        try {
-          this.graphRenderer.drawMoodGraph(
-            this.elements.moodGraph,
-            this.state.allEntries
-          );
-        } catch (e) {
-          console.error('Error drawing mood graph:', e);
-        }
-      }
+    // View mode graphs
+    if (this.elements.moodGraph && this.elements.moodGraph.offsetParent !== null) {
+      this.graphRenderer.drawMoodGraph(
+        this.elements.moodGraph,
+        this.state.allEntries
+      );
+    }
 
-      if (this.elements.screenTimeGraph && this.elements.screenTimeGraph.offsetParent !== null) {
-        try {
-          this.graphRenderer.drawScreenTimeGraph(
-            this.elements.screenTimeGraph,
-            this.state.allEntries
-          );
-        } catch (e) {
-          console.error('Error drawing screen time graph:', e);
-        }
-      }
+    if (this.elements.screenTimeGraph && this.elements.screenTimeGraph.offsetParent !== null) {
+      this.graphRenderer.drawScreenTimeGraph(
+        this.elements.screenTimeGraph,
+        this.state.allEntries
+      );
+    }
 
-      if (this.elements.deviationGraph && this.elements.deviationGraph.offsetParent !== null) {
-        try {
-          this.graphRenderer.drawDeviationGraph(
-            this.elements.deviationGraph,
-            this.state.allEntries
-          );
-        } catch (e) {
-          console.error('Error drawing deviation graph:', e);
-        }
-      }
+    if (this.elements.deviationGraph && this.elements.deviationGraph.offsetParent !== null) {
+      this.graphRenderer.drawDeviationGraph(
+        this.elements.deviationGraph,
+        this.state.allEntries
+      );
+    }
 
-      this.updateStats();
-    }, 50);
+    this.updateStats();
   },
 
   updateStats() {
