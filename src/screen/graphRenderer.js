@@ -17,14 +17,14 @@ class GraphRenderer {
     ctx.fillStyle = '#000000';
     ctx.fillRect(0, 0, width, height);
 
-    const padding = 40;
+    const padding = 30;
     const graphWidth = width - padding * 2;
     const graphHeight = height - padding * 2;
 
     const sorted = [...entries].sort((a, b) => new Date(a.date) - new Date(b.date)).slice(-14);
     if (sorted.length === 0) return;
 
-    ctx.strokeStyle = '#444444';
+    ctx.strokeStyle = '#333333';
     ctx.lineWidth = 1;
     ctx.beginPath();
     ctx.moveTo(padding, height - padding);
@@ -46,17 +46,17 @@ class GraphRenderer {
       ctx.arc(x, moodY, 4, 0, Math.PI * 2);
       ctx.fill();
 
-      ctx.fillStyle = '#777';
+      ctx.fillStyle = '#666';
       ctx.beginPath();
       ctx.arc(x, screenY, 4, 0, Math.PI * 2);
       ctx.fill();
     });
 
-    ctx.font = '12px system-ui';
-    ctx.fillStyle = '#bbb';
-    ctx.fillText('● Mood (1-5)', padding, padding - 10);
-    ctx.fillStyle = '#888';
-    ctx.fillText('● Screen Time (hours)', padding + 140, padding - 10);
+    ctx.font = '11px system-ui';
+    ctx.fillStyle = '#aaa';
+    ctx.fillText('● Mood (1-5)', padding, padding - 8);
+    ctx.fillStyle = '#666';
+    ctx.fillText('● Screen Time (hours)', padding + 140, padding - 8);
   }
 
   drawMoodGraph(canvas, entries) {
@@ -73,7 +73,7 @@ class GraphRenderer {
     ctx.fillStyle = '#000000';
     ctx.fillRect(0, 0, width, height);
 
-    const padding = 40;
+    const padding = 30;
     const graphWidth = width - padding * 2;
     const graphHeight = height - padding * 2;
 
@@ -81,7 +81,7 @@ class GraphRenderer {
     if (sorted.length === 0) return;
 
     // Draw axes
-    ctx.strokeStyle = '#444444';
+    ctx.strokeStyle = '#333333';
     ctx.lineWidth = 1.5;
     ctx.beginPath();
     ctx.moveTo(padding, height - padding);
@@ -120,7 +120,7 @@ class GraphRenderer {
 
     // Labels
     ctx.font = '11px system-ui';
-    ctx.fillStyle = '#bbb';
+    ctx.fillStyle = '#aaa';
     ctx.textAlign = 'center';
     ctx.fillText('Days', width / 2, height - 8);
   }
@@ -139,7 +139,7 @@ class GraphRenderer {
     ctx.fillStyle = '#000000';
     ctx.fillRect(0, 0, width, height);
 
-    const padding = 40;
+    const padding = 30;
     const graphWidth = width - padding * 2;
     const graphHeight = height - padding * 2;
 
@@ -147,7 +147,7 @@ class GraphRenderer {
     if (sorted.length === 0) return;
 
     // Draw axes
-    ctx.strokeStyle = '#444444';
+    ctx.strokeStyle = '#333333';
     ctx.lineWidth = 1.5;
     ctx.beginPath();
     ctx.moveTo(padding, height - padding);
@@ -160,7 +160,7 @@ class GraphRenderer {
     ctx.stroke();
 
     // Draw line
-    ctx.strokeStyle = '#777';
+    ctx.strokeStyle = '#666';
     ctx.lineWidth = 2;
     ctx.beginPath();
     sorted.forEach((entry, i) => {
@@ -178,7 +178,7 @@ class GraphRenderer {
     sorted.forEach((entry, i) => {
       const x = padding + (i / (sorted.length - 1 || 1)) * graphWidth;
       const y = height - padding - (entry.screenTime / 24) * graphHeight;
-      ctx.fillStyle = '#777';
+      ctx.fillStyle = '#666';
       ctx.beginPath();
       ctx.arc(x, y, 2.5, 0, Math.PI * 2);
       ctx.fill();
@@ -186,7 +186,7 @@ class GraphRenderer {
 
     // Labels
     ctx.font = '11px system-ui';
-    ctx.fillStyle = '#bbb';
+    ctx.fillStyle = '#666';
     ctx.textAlign = 'center';
     ctx.fillText('Days', width / 2, height - 8);
   }
@@ -205,7 +205,7 @@ class GraphRenderer {
     ctx.fillStyle = '#000000';
     ctx.fillRect(0, 0, width, height);
 
-    const padding = 50;
+    const padding = 30;
     const graphWidth = width - padding * 2;
     const graphHeight = height - padding * 2;
 
@@ -226,7 +226,7 @@ class GraphRenderer {
     const maxScreenDev = Math.max(...deviations.map(d => Math.abs(d.screenDev)));
 
     // Draw axes
-    ctx.strokeStyle = '#444444';
+    ctx.strokeStyle = '#333333';
     ctx.lineWidth = 1.5;
     
     // X-axis
@@ -242,7 +242,7 @@ class GraphRenderer {
     ctx.stroke();
 
     // Zero line
-    ctx.strokeStyle = '#444444';
+    ctx.strokeStyle = '#333333';
     ctx.lineWidth = 1;
     ctx.setLineDash([5, 5]);
     ctx.beginPath();
@@ -267,7 +267,7 @@ class GraphRenderer {
     ctx.stroke();
 
     // Draw screen time deviation line
-    ctx.strokeStyle = '#777';
+    ctx.strokeStyle = '#666';
     ctx.lineWidth = 2;
     ctx.beginPath();
     deviations.forEach((dev, i) => {
@@ -292,24 +292,24 @@ class GraphRenderer {
       ctx.fill();
 
       const screenY = height - padding - (dev.screenDev / (maxScreenDev || 1)) * (graphHeight / 2);
-      ctx.fillStyle = '#777';
+      ctx.fillStyle = '#666';
       ctx.beginPath();
       ctx.arc(x, screenY, 2, 0, Math.PI * 2);
       ctx.fill();
     });
 
     // Labels
-    ctx.font = '12px system-ui';
-    ctx.fillStyle = '#bbb';
+    ctx.font = '11px system-ui';
+    ctx.fillStyle = '#aaa';
     ctx.textAlign = 'center';
     ctx.fillText('Days', width / 2, height - 8);
 
     // Legend
-    ctx.font = 'bold 11px system-ui';
+    ctx.font = 'bold 10px system-ui';
     ctx.textAlign = 'left';
     ctx.fillStyle = '#aaa';
-    ctx.fillText('● Mood Deviation', padding, padding - 10);
-    ctx.fillStyle = '#777';
-    ctx.fillText('● Screen Time Deviation', padding + 160, padding - 10);
+    ctx.fillText('● Mood Deviation', padding, padding - 8);
+    ctx.fillStyle = '#666';
+    ctx.fillText('● Screen Time Deviation', padding + 160, padding - 8);
   }
 }

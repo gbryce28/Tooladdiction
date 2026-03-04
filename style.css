@@ -268,14 +268,15 @@ html, body {
 /* Graph Section */
 .graph-container {
   width: 100%;
-  height: 320px;
+  height: 340px;
   background: linear-gradient(135deg, #0a0a0a 0%, #000000 100%);
-  border-radius: 2px;
-  padding: 1.5rem;
-  border: 1px solid #333333;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  border-radius: 0;
+  padding: 0;
+  border: 1px solid #222222;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.8);
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .graph-container canvas {
@@ -293,28 +294,25 @@ html, body {
 
 .graph-container-medium {
   background: linear-gradient(135deg, #0a0a0a 0%, #000000 100%);
-  border-radius: 2px;
-  padding: 1.5rem;
-  border: 1px solid #333333;
-  height: 280px;
+  border-radius: 0;
+  padding: 0;
+  border: 1px solid #222222;
+  height: 300px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.graph-container-medium:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
 }
 
 .graph-container-medium h3 {
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   color: #a8b5c8;
-  margin-bottom: 1rem;
+  padding: 1rem;
+  padding-bottom: 0.5rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 500;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  flex-shrink: 0;
 }
 
 .graph-container-medium canvas {
@@ -327,22 +325,25 @@ html, body {
   width: 100%;
   height: 420px;
   background: linear-gradient(135deg, #0a0a0a 0%, #000000 100%);
-  border-radius: 2px;
-  padding: 1.5rem;
-  border: 1px solid #333333;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  border-radius: 0;
+  padding: 0;
+  border: 1px solid #222222;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.8);
   margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .graph-container-large h3 {
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   color: #a8b5c8;
-  margin-bottom: 1rem;
+  padding: 1rem;
+  padding-bottom: 0.5rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 500;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  flex-shrink: 0;
 }
 
 .graph-container-large canvas {
@@ -421,15 +422,15 @@ html, body {
   justify-content: space-between;
   align-items: center;
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid #333333;
+  border-bottom: 1px solid #222222;
   margin-bottom: 0.5rem;
 }
 
 .view-header h1 {
-  font-size: 2.2rem;
+  font-size: 2.4rem;
   font-weight: 300;
   color: #e8eef5;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
 .graph-section,
@@ -464,31 +465,32 @@ html, body {
   gap: 0.75rem;
   padding: 2rem 1.5rem;
   background: linear-gradient(135deg, #0a0a0a 0%, #000000 100%);
-  border-radius: 2px;
-  border: 1px solid #333333;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  border-radius: 0;
+  border: 1px solid #222222;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.8);
   transition: all 0.3s ease;
 }
 
 .stat-card:hover {
-  border-color: #4a5f7f;
-  box-shadow: 0 12px 40px rgba(74, 95, 127, 0.15);
+  border-color: #3a4a5f;
+  box-shadow: 0 8px 24px rgba(74, 95, 127, 0.2);
 }
 
 .stat-label {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: #7a8fa8;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-weight: 600;
+  letter-spacing: 0.12em;
+  font-weight: 700;
 }
 
 .stat-value {
-  font-size: 2.4rem;
+  font-size: 2.6rem;
   font-weight: 700;
   color: #e8eef5;
   font-family: 'Monaco', monospace;
   line-height: 1;
+  letter-spacing: -0.02em;
 }
 
 .insights-container {
@@ -499,10 +501,10 @@ html, body {
 
 .insight-item {
   padding: 1.5rem;
-  background: linear-gradient(90deg, rgba(74, 95, 127, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
-  border-radius: 2px;
-  border: 1px solid #2a3a50;
-  border-left: 3px solid #4a5f7f;
+  background: linear-gradient(90deg, rgba(74, 95, 127, 0.08) 0%, rgba(0, 0, 0, 0) 100%);
+  border-radius: 0;
+  border: 1px solid #1a2a3a;
+  border-left: 2px solid #4a5f7f;
   font-size: 0.95rem;
   line-height: 1.8;
   color: #c5cdd8;
@@ -511,7 +513,8 @@ html, body {
 
 .insight-item:hover {
   border-left-color: #6a7faf;
-  background: linear-gradient(90deg, rgba(74, 95, 127, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(90deg, rgba(74, 95, 127, 0.12) 0%, rgba(0, 0, 0, 0) 100%);
+  border-color: #2a3a4a;
 }
 
 .empty-state {
