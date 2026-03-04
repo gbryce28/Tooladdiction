@@ -275,8 +275,8 @@ const app = {
     this.generateTestData();
     this.state.allEntries = this.storage.getEntries();
     this.analyzer = new ScreenAnalyzer(this.state.allEntries);
-    this.updateStats();
-    this.renderGraphs();
+    this.state.step = null;
+    this.render();
   }
 };
 

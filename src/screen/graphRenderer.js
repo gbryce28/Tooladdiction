@@ -4,8 +4,6 @@
 
 class GraphRenderer {
   drawCorrelationGraph(canvas, entries) {
-    if (entries.length === 0) return;
-
     const ctx = canvas.getContext('2d');
     const width = canvas.offsetWidth;
     const height = canvas.offsetHeight;
@@ -16,6 +14,8 @@ class GraphRenderer {
 
     ctx.fillStyle = '#000000';
     ctx.fillRect(0, 0, width, height);
+
+    if (entries.length === 0) return;
 
     const padding = 30;
     const graphWidth = width - padding * 2;
@@ -60,8 +60,6 @@ class GraphRenderer {
   }
 
   drawMoodGraph(canvas, entries) {
-    if (entries.length === 0) return;
-
     const ctx = canvas.getContext('2d');
     const width = canvas.offsetWidth;
     const height = canvas.offsetHeight;
@@ -72,6 +70,8 @@ class GraphRenderer {
 
     ctx.fillStyle = '#000000';
     ctx.fillRect(0, 0, width, height);
+
+    if (entries.length === 0) return;
 
     const padding = 30;
     const graphWidth = width - padding * 2;
@@ -126,8 +126,6 @@ class GraphRenderer {
   }
 
   drawScreenTimeGraph(canvas, entries) {
-    if (entries.length === 0) return;
-
     const ctx = canvas.getContext('2d');
     const width = canvas.offsetWidth;
     const height = canvas.offsetHeight;
@@ -138,6 +136,8 @@ class GraphRenderer {
 
     ctx.fillStyle = '#000000';
     ctx.fillRect(0, 0, width, height);
+
+    if (entries.length === 0) return;
 
     const padding = 30;
     const graphWidth = width - padding * 2;
@@ -192,8 +192,6 @@ class GraphRenderer {
   }
 
   drawDeviationGraph(canvas, entries) {
-    if (entries.length < 2) return;
-
     const ctx = canvas.getContext('2d');
     const width = canvas.offsetWidth;
     const height = canvas.offsetHeight;
@@ -204,6 +202,8 @@ class GraphRenderer {
 
     ctx.fillStyle = '#000000';
     ctx.fillRect(0, 0, width, height);
+
+    if (entries.length < 2) return;
 
     const padding = 30;
     const graphWidth = width - padding * 2;
