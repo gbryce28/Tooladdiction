@@ -276,7 +276,7 @@ const app = {
     this.state.allEntries = this.storage.getEntries();
     this.analyzer = new ScreenAnalyzer(this.state.allEntries);
     this.state.step = null;
-    this.render();
+    this.showViewMode();
   }
 };
 
