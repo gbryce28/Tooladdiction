@@ -87,6 +87,7 @@ class MoodAnalyzer {
     const trend = this.getMoodTrend();
     const dayPatterns = this.getMoodByDayOfWeek();
 
+    // Trend insight - always generate based on actual trend direction
     if (trend) {
       if (trend.direction === 'improving') {
         insights.push('Your mood has been improving lately. Keep going.');
@@ -97,17 +98,36 @@ class MoodAnalyzer {
       }
     }
 
-    if (dayPatterns) {
+    // Day pattern insights - always provide comparison even if subtle
+    if (dayPatterns && dayPatterns.length > 0) {
       const sorted = [...dayPatterns].sort((a, b) => b.average - a.average);
       const best = sorted[0];
       const worst = sorted[sorted.length - 1];
+      const difference = best.average - worst.average;
 
+      // Generate insight about best day - with lower threshold
       if (best.average > 3.5) {
         insights.push(`You tend to feel better on ${best.day}s.`);
+      } else if (best.average > 3) {
+        insights.push(`${best.day}s are relatively good for you.`);
+      } else if (difference > 0.5) {
+        insights.push(`${best.day}s tend to be your stronger mood days.`);
       }
 
+      // Generate insight about worst day - with lower threshold
       if (worst.average < 2.5) {
         insights.push(`${worst.day}s tend to be harder. That's okay. It's temporary.`);
+      } else if (worst.average < 3) {
+        insights.push(`${worst.day}s are typically more challenging for you.`);
+      } else if (difference > 0.5) {
+        insights.push(`${worst.day}s tend to be your lower mood days.`);
+      }
+
+      // Generate overall day pattern insight if there's variation
+      if (difference > 0.8) {
+        insights.push(`Your mood varies by about ${difference.toFixed(1)} points across different days of the week. Awareness helps.`);
+      } else if (difference > 0.3) {
+        insights.push(`There's subtle variation in your mood across different days—notice which days support you.`);
       }
     }
 

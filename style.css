@@ -268,17 +268,20 @@ html, body {
 /* Graph Section */
 .graph-container {
   width: 100%;
-  height: 300px;
-  background: #000000;
-  border-radius: 0;
-  padding: 1rem;
-  border: 2px solid #444444;
-  box-shadow: none;
+  height: 320px;
+  background: linear-gradient(135deg, #0a0a0a 0%, #000000 100%);
+  border-radius: 2px;
+  padding: 1.5rem;
+  border: 1px solid #333333;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
 }
 
 .graph-container canvas {
   width: 100%;
   height: 100%;
+  display: block;
 }
 
 .graphs-grid {
@@ -289,48 +292,63 @@ html, body {
 }
 
 .graph-container-medium {
-  background: #000000;
-  border-radius: 0;
-  padding: 1rem;
-  border: 2px solid #444444;
-  height: 300px;
+  background: linear-gradient(135deg, #0a0a0a 0%, #000000 100%);
+  border-radius: 2px;
+  padding: 1.5rem;
+  border: 1px solid #333333;
+  height: 280px;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.graph-container-medium:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8);
 }
 
 .graph-container-medium h3 {
-  font-size: 1rem;
-  color: #e8eef5;
-  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  color: #a8b5c8;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500;
 }
 
 .graph-container-medium canvas {
   width: 100%;
   flex: 1;
+  display: block;
 }
 
 .graph-container-large {
   width: 100%;
-  height: 400px;
-  background: #000000;
-  border-radius: 0;
-  padding: 1rem;
-  border: 2px solid #444444;
-  box-shadow: none;
+  height: 420px;
+  background: linear-gradient(135deg, #0a0a0a 0%, #000000 100%);
+  border-radius: 2px;
+  padding: 1.5rem;
+  border: 1px solid #333333;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
   margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
 }
 
 .graph-container-large h3 {
-  font-size: 1rem;
-  color: #e8eef5;
-  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  color: #a8b5c8;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500;
 }
 
 .graph-container-large canvas {
   width: 100%;
   flex: 1;
+  display: block;
 }
 
 /* Pattern Summary */
@@ -402,14 +420,16 @@ html, body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 1rem;
-  border-bottom: 2px solid #444444;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #333333;
+  margin-bottom: 0.5rem;
 }
 
 .view-header h1 {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 300;
   color: #e8eef5;
+  letter-spacing: -0.01em;
 }
 
 .graph-section,
@@ -422,9 +442,12 @@ html, body {
 
 .graph-section h2,
 .insights-section h2 {
-  font-size: 1.3rem;
-  font-weight: 400;
+  font-size: 1.1rem;
+  font-weight: 600;
   color: #e8eef5;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
 }
 
 .stats-section {
@@ -437,26 +460,35 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
-  padding: 1.5rem;
-  background: #000000;
-  border-radius: 0;
-  border: 2px solid #444444;
-  box-shadow: none;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 2rem 1.5rem;
+  background: linear-gradient(135deg, #0a0a0a 0%, #000000 100%);
+  border-radius: 2px;
+  border: 1px solid #333333;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  border-color: #4a5f7f;
+  box-shadow: 0 12px 40px rgba(74, 95, 127, 0.15);
 }
 
 .stat-label {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   color: #7a8fa8;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
+  font-weight: 600;
 }
 
 .stat-value {
-  font-size: 2rem;
-  font-weight: 600;
+  font-size: 2.4rem;
+  font-weight: 700;
   color: #e8eef5;
   font-family: 'Monaco', monospace;
+  line-height: 1;
 }
 
 .insights-container {
@@ -467,12 +499,19 @@ html, body {
 
 .insight-item {
   padding: 1.5rem;
-  background: #000000;
-  border-radius: 0;
-  border-left: 4px solid #4a5f7f;
+  background: linear-gradient(90deg, rgba(74, 95, 127, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
+  border-radius: 2px;
+  border: 1px solid #2a3a50;
+  border-left: 3px solid #4a5f7f;
   font-size: 0.95rem;
-  line-height: 1.6;
-  color: #a8b5c8;
+  line-height: 1.8;
+  color: #c5cdd8;
+  transition: all 0.3s ease;
+}
+
+.insight-item:hover {
+  border-left-color: #6a7faf;
+  background: linear-gradient(90deg, rgba(74, 95, 127, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
 }
 
 .empty-state {
