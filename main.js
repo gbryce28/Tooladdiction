@@ -71,6 +71,11 @@ const app = {
     this.analyzer = new ScreenAnalyzer(this.state.allEntries);
     this.graphRenderer = new GraphRenderer();
 
+    // If we have data, go to view mode; otherwise start at step 1
+    if (entries.length > 0) {
+      this.state.step = null;
+    }
+
     this.setupEventListeners();
     this.render();
   },
