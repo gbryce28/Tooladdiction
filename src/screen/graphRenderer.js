@@ -60,29 +60,45 @@ class GraphRenderer {
   }
 
   drawMoodGraph(canvas, entries) {
+    if (!canvas) return;
+    
     const ctx = canvas.getContext('2d');
-    const width = canvas.offsetWidth;
-    const height = canvas.offsetHeight;
+    const dpr = window.devicePixelRatio || 1;
+    let width = canvas.clientWidth || canvas.offsetWidth;
+    let height = canvas.clientHeight || canvas.offsetHeight;
 
-    canvas.width = width * (window.devicePixelRatio || 1);
-    canvas.height = height * (window.devicePixelRatio || 1);
-    ctx.scale(window.devicePixelRatio || 1, window.devicePixelRatio || 1);
+    // Fallback to parent dimensions if canvas has no size yet
+    if (!width && canvas.parentElement) {
+      width = canvas.parentElement.clientWidth;
+    }
+    if (!height && canvas.parentElement) {
+      height = canvas.parentElement.clientHeight - 10; // Account for padding/border
+    }
+
+    // Default fallback sizes
+    if (!width) width = 400;
+    if (!height) height = 200;
+
+    canvas.width = Math.round(width * dpr);
+    canvas.height = Math.round(height * dpr);
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.scale(dpr, dpr);
 
     ctx.fillStyle = '#000000';
     ctx.fillRect(0, 0, width, height);
 
-    if (entries.length === 0) return;
+    if (!entries || entries.length === 0) return;
 
-    const padding = 30;
+    const sorted = [...entries].sort((a, b) => new Date(a.date) - new Date(b.date));
+    const valid = sorted.filter(e => Number.isFinite(Number(e.mood)) && Number(e.mood) > 0);
+    if (valid.length === 0) return;
+
+    const padding = 28;
     const graphWidth = width - padding * 2;
     const graphHeight = height - padding * 2;
 
-    const sorted = [...entries].sort((a, b) => new Date(a.date) - new Date(b.date));
-    if (sorted.length === 0) return;
-
-    // Draw axes
     ctx.strokeStyle = '#333333';
-    ctx.lineWidth = 1.5;
+    ctx.lineWidth = 1.2;
     ctx.beginPath();
     ctx.moveTo(padding, height - padding);
     ctx.lineTo(width - padding, height - padding);
@@ -93,36 +109,51 @@ class GraphRenderer {
     ctx.lineTo(padding, height - padding);
     ctx.stroke();
 
-    // Draw line
-    ctx.strokeStyle = '#aaa';
+    // Keep scale fixed to mood scale (1..5) so behavior stays stable as data grows.
+    const scaleMin = 1;
+    const scaleMax = 5;
+    const range = scaleMax - scaleMin;
+    const xFor = (index) => padding + (index / (sorted.length - 1 || 1)) * graphWidth;
+    const yForMood = (mood) => height - padding - ((mood - scaleMin) / range) * graphHeight;
+
+    // Draw segmented line so missing days do not connect across gaps.
+    ctx.strokeStyle = '#cfcfcf';
     ctx.lineWidth = 2;
+    let drawing = false;
     ctx.beginPath();
     sorted.forEach((entry, i) => {
-      const x = padding + (i / (sorted.length - 1 || 1)) * graphWidth;
-      const y = height - padding - (entry.mood / 5) * graphHeight;
-      if (i === 0) {
+      const mood = Number(entry.mood);
+      if (!Number.isFinite(mood) || mood <= 0) {
+        drawing = false;
+        return;
+      }
+      const x = xFor(i);
+      const y = yForMood(Math.max(1, Math.min(5, mood)));
+      if (!drawing) {
         ctx.moveTo(x, y);
+        drawing = true;
       } else {
         ctx.lineTo(x, y);
       }
     });
     ctx.stroke();
 
-    // Draw points
+    // Points
+    ctx.fillStyle = '#e8eef5';
     sorted.forEach((entry, i) => {
-      const x = padding + (i / (sorted.length - 1 || 1)) * graphWidth;
-      const y = height - padding - (entry.mood / 5) * graphHeight;
-      ctx.fillStyle = '#aaa';
+      const mood = Number(entry.mood);
+      if (!Number.isFinite(mood) || mood <= 0) return;
+      const x = xFor(i);
+      const y = yForMood(Math.max(1, Math.min(5, mood)));
       ctx.beginPath();
-      ctx.arc(x, y, 2.5, 0, Math.PI * 2);
+      ctx.arc(x, y, 3, 0, Math.PI * 2);
       ctx.fill();
     });
 
-    // Labels
-    ctx.font = '11px system-ui';
-    ctx.fillStyle = '#aaa';
+    ctx.font = '12px system-ui';
+    ctx.fillStyle = '#a8b5c8';
     ctx.textAlign = 'center';
-    ctx.fillText('Days', width / 2, height - 8);
+    ctx.fillText('Last 30 days', width / 2, height - 8);
   }
 
   drawScreenTimeGraph(canvas, entries) {

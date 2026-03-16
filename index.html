@@ -8,213 +8,123 @@
 </head>
 <body>
   <div id="app" class="app">
-    <!-- Multi-Step Flow -->
-    
-    <!-- Step 1: Mood Rating -->
-    <section class="step" id="step1" style="display: none;">
-      <div class="step-container">
-        <div class="step-header">
-          <div class="step-number">1 of 3</div>
-          <h1>How was your day?</h1>
+    <main class="mobile-root">
+      <header class="mobile-header">
+        <h1>Daily Mood</h1>
+        <p class="sub">Quick check-in — tap how you feel today</p>
+      </header>
+
+      <section class="mood-area">
+        <div class="mood-scale" id="moodScale">
+          <button class="mood-option" data-mood="1"><span class="mood-label">Terrible</span></button>
+          <button class="mood-option" data-mood="2"><span class="mood-label">Bad</span></button>
+          <button class="mood-option" data-mood="3"><span class="mood-label">Okay</span></button>
+          <button class="mood-option" data-mood="4"><span class="mood-label">Good</span></button>
+          <button class="mood-option" data-mood="5"><span class="mood-label">Great</span></button>
         </div>
 
-        <div class="mood-scale">
-          <button class="mood-option" data-mood="1">
-            <svg class="mood-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <circle cx="12" cy="12" r="10"></circle>
-              <path d="M8 14c1 1 2 2 4 2s3-1 4-2"></path>
-              <circle cx="9" cy="9" r="1"></circle>
-              <circle cx="15" cy="9" r="1"></circle>
-            </svg>
-            <span class="mood-label">Terrible</span>
-          </button>
-          <button class="mood-option" data-mood="2">
-            <svg class="mood-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <circle cx="12" cy="12" r="10"></circle>
-              <path d="M9 15c1-0.5 2-1 3-1s2 0.5 3 1"></path>
-              <circle cx="9" cy="9" r="1"></circle>
-              <circle cx="15" cy="9" r="1"></circle>
-            </svg>
-            <span class="mood-label">Bad</span>
-          </button>
-          <button class="mood-option" data-mood="3">
-            <svg class="mood-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="9" y1="9" x2="9" y2="10"></line>
-              <line x1="15" y1="9" x2="15" y2="10"></line>
-              <line x1="9" y1="15" x2="15" y2="15"></line>
-            </svg>
-            <span class="mood-label">Okay</span>
-          </button>
-          <button class="mood-option" data-mood="4">
-            <svg class="mood-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <circle cx="12" cy="12" r="10"></circle>
-              <path d="M9 14c1 1 2 2 3 2s2-1 3-2"></path>
-              <circle cx="9" cy="9" r="1"></circle>
-              <circle cx="15" cy="9" r="1"></circle>
-            </svg>
-            <span class="mood-label">Good</span>
-          </button>
-          <button class="mood-option" data-mood="5">
-            <svg class="mood-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <circle cx="12" cy="12" r="10"></circle>
-              <path d="M8 13c1 2 2 3 4 3s3-1 4-3"></path>
-              <circle cx="9" cy="8" r="1"></circle>
-              <circle cx="15" cy="8" r="1"></circle>
-            </svg>
-            <span class="mood-label">Great</span>
-          </button>
+        <div class="mood-actions">
+          <button id="saveBtn" class="btn btn-primary" disabled>Save Mood</button>
+          <button id="exampleDataBtn" class="btn btn-secondary">Load Example Data</button>
         </div>
+      </section>
 
-        <button id="moodNextBtn" class="btn btn-primary" disabled>Next</button>
-      </div>
-    </section>
-
-    <!-- Step 2: Screen Time -->
-    <section class="step" id="step2" style="display: none;">
-      <div class="step-container">
-        <div class="step-header">
-          <div class="step-number">2 of 3</div>
-          <h1>How much screen time today?</h1>
+      <section class="graph-section">
+        <h2>Recent Mood</h2>
+        <div class="graph-container-medium" id="graphContainer">
+          <canvas id="moodGraph"></canvas>
+          <div class="graph-overlay">Click to expand</div>
         </div>
-
-        <div class="screen-input-group">
-          <input 
-            type="number" 
-            id="screenHours" 
-            class="screen-input" 
-            placeholder="0"
-            min="0"
-            max="24"
-            step="0.5"
-          >
-          <span class="screen-unit">hours</span>
-        </div>
-
-        <div class="screen-context">
-          <label class="checkbox-label">
-            <input type="checkbox" id="phoneCheckbox">
-            <span>Mostly on phone/social media</span>
-          </label>
-          <textarea 
-            id="screenNote" 
-            class="screen-note" 
-            placeholder="Optional: What were you doing? (e.g., Work, scrolling, gaming, streaming)"
-            maxlength="200"
-          ></textarea>
-        </div>
-
-        <div class="step-buttons">
-          <button id="screenBackBtn" class="btn btn-secondary">Back</button>
-          <button id="screenNextBtn" class="btn btn-primary" disabled>Next</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Step 3: Graph & Summary -->
-    <section class="step" id="step3" style="display: none;">
-      <div class="step-container">
-        <div class="step-header">
-          <div class="step-number">3 of 3</div>
-          <h1>Your Pattern</h1>
-        </div>
-
-        <div class="graph-container">
-          <canvas id="correlationGraph"></canvas>
-        </div>
-
-        <div class="pattern-summary">
-          <h3>What's happening?</h3>
-          <p id="patternText">Log at least 3 days to see patterns.</p>
-        </div>
-
         <div class="today-summary">
           <div class="summary-card">
-            <span class="summary-label">Today's Mood</span>
-            <span class="summary-value" id="summaryMood">—</span>
+            <span class="summary-label">Days Tracked</span>
+            <span class="summary-value" id="daysTracked">0</span>
           </div>
           <div class="summary-card">
-            <span class="summary-label">Today's Screen Time</span>
-            <span class="summary-value" id="summaryScreen">—</span>
+            <span class="summary-label">Avg Mood</span>
+            <span class="summary-value" id="avgMoodStat">—</span>
           </div>
         </div>
+      </section>
 
-        <div class="step-buttons">
-          <button id="graphBackBtn" class="btn btn-secondary">Back</button>
-          <button id="saveBtn" class="btn btn-primary">Save & Done</button>
+      <!-- Graph Expansion Modal -->
+      <div id="graphModal" class="graph-modal" style="display: none;">
+        <div class="graph-modal-backdrop"></div>
+        <div class="graph-modal-content">
+          <div class="graph-modal-header">
+            <h2>Mood Trend</h2>
+            <button id="closeGraphModal" class="graph-modal-close" aria-label="Close">×</button>
+          </div>
+          <div class="graph-modal-body">
+            <canvas id="expandedMoodGraph"></canvas>
+            <div class="graph-legend">
+              <div class="legend-item">
+                <span class="legend-indicator peak"></span>
+                <span class="legend-text">Peak (Great)</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-indicator mean"></span>
+                <span class="legend-text">Mean Line</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-indicator trough"></span>
+                <span class="legend-text">Trough (Terrible)</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-indicator trough-distance"></span>
+                <span class="legend-text">Trough Distance</span>
+              </div>
+            </div>
+          </div>
+          <div class="graph-modal-stats">
+            <div class="stat-item">
+              <span class="stat-label">Highest</span>
+              <span class="stat-value" id="modalHighest">—</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Lowest</span>
+              <span class="stat-value" id="modalLowest">—</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Average</span>
+              <span class="stat-value" id="modalAverage">—</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Streak</span>
+              <span class="stat-value" id="modalStreak">—</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Bad Day</span>
+              <span class="stat-value" id="modalBadDay">—</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Good Day</span>
+              <span class="stat-value" id="modalGoodDay">—</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Trough Count</span>
+              <span class="stat-value" id="modalTroughCount">—</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Peak Count</span>
+              <span class="stat-value" id="modalPeakCount">—</span>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
-
-    <!-- View Mode: Graph Dashboard -->
-    <section id="viewMode" style="display: none;">
-      <div class="view-container">
-        <header class="view-header">
-          <h1>Screen & Mood</h1>
-          <div class="header-buttons">
-            <button id="exampleDataBtn" class="btn btn-secondary">Load Example</button>
-            <button id="editBtn" class="btn btn-secondary">Log Today</button>
-          </div>
-        </header>
-
-        <div class="graph-section">
-          <h2>Your Data</h2>
-          
-          <div class="graphs-grid">
-            <div class="graph-container-medium">
-              <h3>Mood</h3>
-              <canvas id="moodGraph"></canvas>
-            </div>
-            <div class="graph-container-medium">
-              <h3>Screen Time</h3>
-              <canvas id="screenTimeGraph"></canvas>
-            </div>
-          </div>
-
-          <div class="graph-container-large">
-            <h3>Deviation from Average</h3>
-            <canvas id="deviationGraph"></canvas>
-          </div>
+      <section class="beta-footer" aria-hidden="false">
+        <div class="beta-buttons">
+          <button id="nextDayBtn" class="btn btn-secondary">Advance Day (Beta)</button>
+          <button id="undoBtn" class="btn btn-secondary">Undo Last</button>
         </div>
-
-        <div class="stats-section">
-          <div class="stat-card">
-            <span class="stat-label">Days Tracked</span>
-            <span class="stat-value" id="daysTracked">0</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-label">Avg Mood</span>
-            <span class="stat-value" id="avgMoodStat">—</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-label">Avg Screen Time</span>
-            <span class="stat-value" id="avgScreenStat">—</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-label">Correlation</span>
-            <span class="stat-value" id="correlationStat">—</span>
-          </div>
-        </div>
-
-        <div class="insights-section">
-          <h2>Insights</h2>
-          <div id="insightsContainer" class="insights-container">
-            <p class="empty-state">Log more days to generate insights.</p>
-          </div>
-        </div>
-
-        <footer class="view-footer">
-          <p>What you see, you can change.</p>
-        </footer>
-      </div>
-    </section>
+      </section>
+    </main>
   </div>
 
   <!-- Load modules -->
-  <script src="src/utils/math.js"></script>
-  <script src="src/screen/screenStorage.js"></script>
-  <script src="src/screen/screenAnalyzer.js"></script>
+  <script src="src/screen/dataModel.js"></script>
   <script src="src/screen/graphRenderer.js"></script>
   <script src="main.js"></script>
+  <script src="src/chart-expansion.js"></script>
 </body>
 </html>
